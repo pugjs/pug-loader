@@ -1,0 +1,16 @@
+{
+	"name": "jade-loader",
+	"version": "0.1.7",
+	"author": "Tobias Koppers @sokra",
+	"description": "jade loader module for webpack",
+	"dependencies": {
+		"jade": "*"
+	},
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "http://www.opensource.org/licenses/mit-license.php"
+		}
+	],
+	"license": "MIT"
+}

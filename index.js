@@ -6,7 +6,6 @@ module.exports = function() {
 	var options = this;
 	var jade = require("jade");
 	var results = [null];
-	this.values = [];
 	var runtime = "var jade = require("+JSON.stringify(require("path").join(__dirname, "node_modules", "jade", "lib", "runtime"))+");\n\n";
 	Array.prototype.forEach.call(arguments, function(content, index) {
 		var tmplFunc = jade.compile(content, {
@@ -15,7 +14,6 @@ module.exports = function() {
 			compileDebug: options.debug
 		});
 		results[index+1] = runtime + "module.exports = " + tmplFunc.toString();
-		options.values[index] = tmplFunc;
 	});
 	this.callback.apply(null, results);
 }

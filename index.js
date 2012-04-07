@@ -11,7 +11,7 @@ module.exports = function() {
 		var tmplFunc = jade.compile(content, {
 			filename: options.filenames[index],
 			client: true,
-			compileDebug: options.debug
+			compileDebug: options.debug || false
 		});
 		results[index+1] = runtime + "module.exports = " + tmplFunc.toString();
 	});

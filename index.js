@@ -3,6 +3,7 @@
 	Author Tobias Koppers @sokra
 */
 module.exports = function() {
+	this.cacheable && this.cacheable();
 	var options = this;
 	var jade = require("jade");
 	var results = [null];

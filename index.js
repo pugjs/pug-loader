@@ -13,3 +13,4 @@ module.exports = function(source) {
 	});
 	return runtime + "module.exports = " + tmplFunc.toString();
 }
+module.exports.seperable = true;

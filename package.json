@@ -1,6 +1,6 @@
 {
 	"name": "jade-loader",
-	"version": "0.2.2",
+	"version": "0.2.3",
 	"author": "Tobias Koppers @sokra",
 	"description": "jade loader module for webpack",
 	"dependencies": {

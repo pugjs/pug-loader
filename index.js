@@ -4,11 +4,15 @@
 */
 var path = require("path");
 var loaderUtils = require("loader-utils");
+
 module.exports = function(source) {
 	this.cacheable && this.cacheable();
 	var jade = require("jade");
+
 	var runtime = "var jade = require("+JSON.stringify(path.join(__dirname, "node_modules", "jade", "lib", "runtime"))+");\n\n";
-	var req = loaderUtils.getRemainingRequest(this).replace(/^!/, "");
+
+  // Get filename without any loaders
+	var req = loaderUtils.getRemainingRequest(this).split("!").pop();
 	var query = loaderUtils.parseQuery(this.query);
 	var tmplFunc = jade.compile(source, {
 		filename: req,

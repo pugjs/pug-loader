@@ -5,7 +5,7 @@
 	"description": "jade loader module for webpack",
 	"dependencies": {
 		"loader-utils": "0.2.x",
-		"jade": "0.28.x"
+		"jade": "0.35.x"
 	},
 	"licenses": [
 		{

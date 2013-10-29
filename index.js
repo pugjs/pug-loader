@@ -25,6 +25,7 @@ module.exports = function(source) {
 	var fileContents = {};
 	var filePaths = {};
 	function MyParser(str, filename, options) {
+		this._mustBeInlined = false;
 		jade.Parser.call(this, str, filename, options);
 	}
 	MyParser.prototype = Object.create(jade.Parser.prototype);
@@ -55,7 +56,7 @@ module.exports = function(source) {
 
 					filePaths[context + " " + baseRequest] = request;
 					fileContents[request] = JSON.parse(source);
-					
+
 					if(!isSync) {
 						run();
 					} else {
@@ -73,9 +74,19 @@ module.exports = function(source) {
 		}
 	}
 
+	MyParser.prototype.parseMixin = function() {
+		this._mustBeInlined = true;
+		return jade.Parser.prototype.parseMixin.call(this);
+	};
+
+	MyParser.prototype.parseBlock = function() {
+		this._mustBeInlined = true;
+		return jade.Parser.prototype.parseBlock.call(this);
+	};
+
 	MyParser.prototype.parseExtends = function() {
 		if(!callback) callback = loaderContext.async();
-		// if(!callback) return jade.Parser.prototype.parseExtends();
+		if(!callback) return jade.Parser.prototype.parseExtends.call(this);
 
 		var request = this.expect('extends').val.trim();
 		var context = dirname(this.filename.split("!").pop());
@@ -93,7 +104,7 @@ module.exports = function(source) {
 
 	MyParser.prototype.parseInclude = function() {
 		if(!callback) callback = loaderContext.async();
-		// if(!callback) return jade.Parser.prototype.parseInclude();
+		if(!callback) return jade.Parser.prototype.parseInclude.call(this);
 
 		var tok = this.expect('include');
 
@@ -127,7 +138,12 @@ module.exports = function(source) {
 
 		if ('indent' == this.peek().type) {
 			ast.includeBlock().push(this.block());
+		} else if(!parser._mustBeInlined) {
+			ast = new nodes.Code("require(" + JSON.stringify(path) + ").call(this, locals)", true, false);
+			ast.line = this.line();
 		}
+
+		if(parser._mustBeInlined) this._mustBeInlined = true;
 
 		return ast;
 	}
@@ -136,7 +152,7 @@ module.exports = function(source) {
 	function run() {
 		try {
 			var tmplFunc = jade.compile(source, {
-				parser: MyParser,
+				parser: loadModule ? MyParser : undefined,
 				filename: req,
 				client: true,
 				self: query.self,

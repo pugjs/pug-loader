@@ -7,6 +7,10 @@
 		"loader-utils": "0.2.x",
 		"jade": "0.35.x"
 	},
+	"devDependencies": {
+		"mocha": "*",
+		"should": "*"
+	},
 	"licenses": [
 		{
 			"type": "MIT",

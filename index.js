@@ -156,6 +156,7 @@ module.exports = function(source) {
 				filename: req,
 				client: true,
 				self: query.self,
+				globals: ["require"].concat(query.globals || []),
 				pretty: query.pretty,
 				locals: query.locals,
 				compileDebug: loaderContext.debug || false

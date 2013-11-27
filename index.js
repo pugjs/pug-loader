@@ -7,7 +7,7 @@ var loaderUtils = require("loader-utils");
 module.exports = function(source) {
 	this.cacheable && this.cacheable();
 	var jade = require("jade");
-	var runtime = "var jade = require("+JSON.stringify(path.join(__dirname, "node_modules", "jade", "lib", "runtime"))+");\n\n";
+	var runtime = "var jade = require("+JSON.stringify(require.resolve("jade/lib/runtime"))+");\n\n";
 	var req = loaderUtils.getRemainingRequest(this).replace(/^!/, "");
 	var query = loaderUtils.parseQuery(this.query);
 	var tmplFunc = jade.compile(source, {

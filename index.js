@@ -169,7 +169,7 @@ module.exports = function(source) {
 			}
 			throw e;
 		}
-		var runtime = "var jade = require("+JSON.stringify(path.join(__dirname, "node_modules", "jade", "lib", "runtime"))+");\n\n";
+		var runtime = "var jade = require("+JSON.stringify(require.resolve("jade/lib/runtime"))+");\n\n";
 		loaderContext.callback(null, runtime + "module.exports = " + tmplFunc.toString());
 	}
 }

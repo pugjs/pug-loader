@@ -151,10 +151,9 @@ module.exports = function(source) {
 	run();
 	function run() {
 		try {
-			var tmplFunc = jade.compile(source, {
+			var tmplFunc = jade.compileClient(source, {
 				parser: loadModule ? MyParser : undefined,
 				filename: req,
-				client: true,
 				self: query.self,
 				globals: ["require"].concat(query.globals || []),
 				pretty: query.pretty,

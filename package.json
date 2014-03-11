@@ -4,12 +4,17 @@
 	"author": "Tobias Koppers @sokra",
 	"description": "jade loader module for webpack",
 	"dependencies": {
-		"loader-utils": "0.2.x",
-		"jade": "0.35.x"
+		"loader-utils": "0.2.x"
+	},
+	"peerDependencies": {
+		"jade": "1.3.x"
 	},
 	"devDependencies": {
 		"mocha": "*",
 		"should": "*"
+	},
+	"scripts": {
+		"test": "mocha -R spec"
 	},
 	"licenses": [
 		{

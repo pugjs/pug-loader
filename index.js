@@ -173,4 +173,3 @@ module.exports = function(source) {
 		loaderContext.callback(null, runtime + "module.exports = " + tmplFunc.toString());
 	}
 }
-module.exports.seperable = true;

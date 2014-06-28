@@ -16,6 +16,10 @@
 	"scripts": {
 		"test": "mocha -R spec"
 	},
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/webpack/jade-loader.git"
+    },
 	"licenses": [
 		{
 			"type": "MIT",

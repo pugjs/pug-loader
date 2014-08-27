@@ -7,7 +7,7 @@
 		"loader-utils": "0.2.x"
 	},
 	"peerDependencies": {
-		"jade": "1.2.x"
+		"jade": "^1.2.0"
 	},
 	"devDependencies": {
 		"mocha": "*",
@@ -16,10 +16,10 @@
 	"scripts": {
 		"test": "mocha -R spec"
 	},
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/webpack/jade-loader.git"
-    },
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/webpack/jade-loader.git"
+	},
 	"licenses": [
 		{
 			"type": "MIT",

@@ -33,7 +33,14 @@ module.exports = function(source) {
 	MyParser.prototype.constructor = MyParser;
 
 	var missingFileMode = false;
+	var aliases = ((this.options || {}).resolve || {}).alias || {};
 	function getFileContent(context, request) {
+		var array = request.split('/');
+		var alias = array.shift();
+		if (aliases[alias]) {
+			context = aliases[alias];
+			request = array.join('/');
+		}
 		request = /^~/.test(request) ? request.substr(1) : "./" + request;
 		var baseRequest = request;
 		var filePath = filePaths[context + " " + request];

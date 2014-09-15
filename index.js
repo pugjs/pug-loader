@@ -47,6 +47,7 @@ module.exports = function(source) {
 					request = _request;
 					next();
 				});
+				return;
 			}
 
 			request = _request;

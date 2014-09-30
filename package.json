@@ -7,7 +7,7 @@
 		"loader-utils": "0.2.x"
 	},
 	"peerDependencies": {
-		"jade": "^1.2.0"
+		"jade": "^1.7.0"
 	},
 	"devDependencies": {
 		"mocha": "*",

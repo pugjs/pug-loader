@@ -18,7 +18,9 @@ describe("include", function() {
 			result.should.match(/"test"/);
 			result.should.match(/"a"/);
 			result.should.not.match(/"b"/);
+			result.should.match(/"c"/);
 			result.should.match(/jade_mixins\["test"\]/);
+			result.should.match(/jade_mixins\["teest"\]/);
 			
 			done();
 		});

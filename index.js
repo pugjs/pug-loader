@@ -86,6 +86,11 @@ module.exports = function(source) {
 		return jade.Parser.prototype.parseBlock.call(this);
 	};
 
+	MyParser.prototype.parseCall = function() {
+		this._mustBeInlined = true;
+		return jade.Parser.prototype.parseCall.call(this);
+	};
+
 	MyParser.prototype.parseExtends = function() {
 		if(!callback) callback = loaderContext.async();
 		if(!callback) return jade.Parser.prototype.parseExtends.call(this);

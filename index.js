@@ -34,7 +34,7 @@ module.exports = function(source) {
 
 	var missingFileMode = false;
 	function getFileContent(context, request) {
-		request = /^~/.test(request) ? request.substr(1) : "./" + request;
+		request = loaderUtils.urlToRequest(request, query.root)
 		var baseRequest = request;
 		var filePath = filePaths[context + " " + request];
 		if(filePath) return filePath;

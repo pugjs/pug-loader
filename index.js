@@ -123,7 +123,13 @@ module.exports = function(source) {
 		// has-filter
 		if (tok.filter) {
 			var str = str.replace(/\r/g, '');
-			str = filters(tok.filter, str, { filename: path });
+			var options = {filename: path};
+			if (tok.attrs) {
+				tok.attrs.attrs.forEach(function (attribute) {
+					options[attribute.name] = constantinople.toConstant(attribute.val);
+				});
+			}
+			str = filters(tok.filter, str, options);
 			return new nodes.Literal(str);
 		}
 
@@ -134,7 +140,10 @@ module.exports = function(source) {
 		}
 
 		var parser = new this.constructor(str, path, this.options);
+		parser.dependencies = this.dependencies;
+
 		parser.blocks = utils.merge({}, this.blocks);
+		parser.included = true;
 
 		parser.mixins = this.mixins;
 

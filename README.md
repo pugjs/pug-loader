@@ -28,9 +28,12 @@ These parameters are passed to [jade options](http://jade-lang.com/api/):
 - `pretty`
 - `locals`
 
-the `root` parameter is used for the `urlToRequest()` function of the
-[loader-utils module](https://github.com/webpack/loader-utils#root-relative-urls)
+The `root` parameter is used for the `urlToRequest()` function of the
+[loader-utils module](https://github.com/webpack/loader-utils#root-relative-urls).
 
+If `requireSyntax` is __true__ then all the jade `include` calls will be handled like `require()` calls (a `~` will be prepended automatically).
+Relative jade files cannot be included by `include form-view` anymore, instead you MUST use
+`include ./form-view`.
 
 
 ## License

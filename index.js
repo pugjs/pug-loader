@@ -167,7 +167,7 @@ module.exports = function(source) {
 	run();
 	function run() {
 		try {
-			var tmplFunc = jade.compileClient(source, {
+			var options = {
 				parser: loadModule ? MyParser : undefined,
 				filename: req,
 				self: query.self,
@@ -175,7 +175,15 @@ module.exports = function(source) {
 				pretty: query.pretty,
 				locals: query.locals,
 				compileDebug: loaderContext.debug || false
-			});
+			};
+
+			if(query.render) {
+				loaderContext.callback(null, jade.render(source, options));
+			} else {
+				// just pre-compile the template
+				var runtime = "var jade = require("+JSON.stringify(require.resolve("jade/lib/runtime"))+");\n\n";
+				loaderContext.callback(null, runtime + "module.exports = " + jade.compileClient(source, options));
+			}
 		} catch(e) {
 			if(missingFileMode) {
 				// Ignore, it'll continue after async action
@@ -184,7 +192,5 @@ module.exports = function(source) {
 			}
 			throw e;
 		}
-		var runtime = "var jade = require("+JSON.stringify(require.resolve("jade/lib/runtime"))+");\n\n";
-		loaderContext.callback(null, runtime + "module.exports = " + tmplFunc.toString());
 	}
 }

@@ -174,6 +174,7 @@ module.exports = function(source) {
 				globals: ["require"].concat(query.globals || []),
 				pretty: query.pretty,
 				locals: query.locals,
+				doctype: query.doctype || 'html',
 				compileDebug: loaderContext.debug || false
 			});
 		} catch(e) {

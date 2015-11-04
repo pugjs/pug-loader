@@ -1,29 +1,29 @@
 {
-	"name": "jade-loader",
-	"version": "0.7.1",
-	"author": "Tobias Koppers @sokra",
-	"description": "jade loader module for webpack",
-	"dependencies": {
-		"loader-utils": "~0.2.5"
-	},
-	"peerDependencies": {
-		"jade": "^1.7.0"
-	},
-	"devDependencies": {
-		"mocha": "*",
-		"should": "*"
-	},
-	"scripts": {
-		"test": "mocha -R spec"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/webpack/jade-loader.git"
-	},
-	"licenses": [
-		{
-			"type": "MIT",
-			"url": "http://www.opensource.org/licenses/mit-license.php"
-		}
-	]
+  "name": "jade-loader",
+  "version": "0.8.0",
+  "author": "Tobias Koppers @sokra",
+  "description": "jade loader module for webpack",
+  "dependencies": {
+    "loader-utils": "~0.2.5"
+  },
+  "peerDependencies": {
+    "jade": "^1.7.0"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  },
+  "scripts": {
+    "test": "mocha -R spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/webpack/jade-loader.git"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/mit-license.php"
+    }
+  ]
 }

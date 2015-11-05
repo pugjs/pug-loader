@@ -34,7 +34,10 @@ module.exports = function(source) {
 
 	var missingFileMode = false;
 	function getFileContent(context, request) {
-		request = loaderUtils.urlToRequest(request, query.root)
+		if (query.requireSyntax) {
+			if (/^[^.~\/]/.test(request)) request = '~' + request;
+		}
+		request = loaderUtils.urlToRequest(request, query.root);
 		var baseRequest = request;
 		var filePath = filePaths[context + " " + request];
 		if(filePath) return filePath;

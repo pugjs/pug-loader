@@ -154,7 +154,7 @@ module.exports = function(source) {
 
 		if ('indent' == this.peek().type) {
 			ast.includeBlock().push(this.block());
-		} else if(!parser._mustBeInlined) {
+		} else if(!parser._mustBeInlined && !query.static) {
 			ast = new nodes.Code("require(" + JSON.stringify(path) + ").call(this, locals)", true, false);
 			ast.line = this.line();
 		}
@@ -167,7 +167,7 @@ module.exports = function(source) {
 	run();
 	function run() {
 		try {
-			var tmplFunc = jade.compileClient(source, {
+			var options = {
 				parser: loadModule ? MyParser : undefined,
 				filename: req,
 				self: query.self,
@@ -176,7 +176,9 @@ module.exports = function(source) {
 				locals: query.locals,
 				doctype: query.doctype || 'html',
 				compileDebug: loaderContext.debug || false
-			});
+			};
+
+            var tmplFunc = (!query.static) ? jade.compileClient(source, options) : jade.compile(source, options)
 		} catch(e) {
 			if(missingFileMode) {
 				// Ignore, it'll continue after async action
@@ -185,7 +187,11 @@ module.exports = function(source) {
 			}
 			throw e;
 		}
-		var runtime = "var jade = require("+JSON.stringify(require.resolve("jade/lib/runtime"))+");\n\n";
-		loaderContext.callback(null, runtime + "module.exports = " + tmplFunc.toString());
+        if (!query.static) {
+            var runtime = "var jade = require(" + JSON.stringify(require.resolve("jade/lib/runtime")) + ");\n\n";
+            loaderContext.callback(null, runtime + "module.exports = " + tmplFunc.toString());
+        } else {
+            loaderContext.callback(null, tmplFunc());
+        }
 	}
 }

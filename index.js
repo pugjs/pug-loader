@@ -173,7 +173,6 @@ module.exports = function(source) {
 				self: query.self,
 				globals: ["require"].concat(query.globals || []),
 				pretty: query.pretty,
-				locals: query.locals,
 				doctype: query.doctype || 'html',
 				compileDebug: loaderContext.debug || false
 			});

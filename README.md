@@ -1,5 +1,9 @@
 # jade loader for webpack
 
+```
+npm install jade-loader --save-dev
+```
+
 ## Usage
 
 ``` javascript

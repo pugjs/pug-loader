@@ -16,6 +16,9 @@ Try to use `require` for all your embedded resources, to process them with webpa
 ``` jade
 div
   img(src=require("./my/image.png"))
+
+//Use #{...} for inline-style images  
+div(style='background-image:url(#{require("./my/image.png")})')
 ```
 
 You need to configure loaders for these filetypes too. (Take a look at the [file-loader](https://github.com/webpack/file-loader).)

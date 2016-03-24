@@ -167,13 +167,6 @@ module.exports = function (source) {
     this.context()
     ast.filename = path
 
-    // if (this.peek().type === 'indent') {
-    //   ast.includeBlock().push(this.block())
-    // } else if (!parser._mustBeInlined) {
-    //   ast = new nodes.Code('require(' + JSON.stringify(path) + ').call(this, locals)', true, false)
-    //   ast.line = this.line()
-    // }
-
     if (parser._mustBeInlined) {
       this._mustBeInlined = true
     }

@@ -6,10 +6,8 @@
   "dependencies": {
     "loader-utils": "~0.2.5"
   },
-  "peerDependencies": {
-    "jade": "^1.7.0"
-  },
   "devDependencies": {
+    "jade": "^1.11.0",
     "mocha": "*",
     "should": "*"
   },

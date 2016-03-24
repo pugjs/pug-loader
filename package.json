@@ -1,8 +1,8 @@
 {
   "name": "jade-loader",
-  "version": "0.8.0",
-  "author": "Tobias Koppers @sokra",
-  "description": "jade loader module for webpack",
+  "description": "jade loader module for webpack. made for use within roots-mini",
+  "version": "0.0.1",
+  "author": "Carrot Creative",
   "dependencies": {
     "loader-utils": "~0.2.5"
   },
@@ -11,17 +11,17 @@
     "mocha": "*",
     "should": "*"
   },
-  "scripts": {
-    "test": "mocha -R spec"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/webpack/jade-loader.git"
-  },
-  "licenses": [
+  "license": [
     {
       "type": "MIT",
       "url": "http://www.opensource.org/licenses/mit-license.php"
     }
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/carrot/jade-loader.git"
+  },
+  "scripts": {
+    "test": "mocha -R spec"
+  }
 }

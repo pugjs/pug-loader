@@ -37,12 +37,16 @@ module.exports = function (source) {
     request = loaderUtils.urlToRequest(request, query.root)
     var baseRequest = request
     var filePath = filePaths[context + ' ' + request]
-    if (filePath) return filePath
+    if (filePath) {
+      return filePath
+    }
     var isSync = true
     resolve(context, request + '.jade', function (err, _request) {
       if (err) {
         resolve(context, request, function (err2, _request) {
-          if (err2) return callback(err2)
+          if (err2) {
+            return callback(err2)
+          }
 
           request = _request
           next()
@@ -54,7 +58,9 @@ module.exports = function (source) {
       next()
       function next () {
         loadModule('-!' + path.join(__dirname, 'stringify.loader.js') + '!' + request, function (err, source) {
-          if (err) return callback(err)
+          if (err) {
+            return callback(err)
+          }
 
           filePaths[context + ' ' + baseRequest] = request
           fileContents[request] = JSON.parse(source)
@@ -92,8 +98,12 @@ module.exports = function (source) {
   }
 
   MyParser.prototype.parseExtends = function () {
-    if (!callback) callback = loaderContext.async()
-    if (!callback) return jade.Parser.prototype.parseExtends.call(this)
+    if (!callback) {
+      callback = loaderContext.async()
+    }
+    if (!callback) {
+      return jade.Parser.prototype.parseExtends.call(this)
+    }
 
     var request = this.expect('extends').val.trim()
     var context = dirname(this.filename.split('!').pop())
@@ -110,8 +120,12 @@ module.exports = function (source) {
   }
 
   MyParser.prototype.parseInclude = function () {
-    if (!callback) callback = loaderContext.async()
-    if (!callback) return jade.Parser.prototype.parseInclude.call(this)
+    if (!callback) {
+      callback = loaderContext.async()
+    }
+    if (!callback) {
+      return jade.Parser.prototype.parseInclude.call(this)
+    }
 
     var tok = this.expect('include')
 
@@ -160,7 +174,9 @@ module.exports = function (source) {
       ast.line = this.line()
     }
 
-    if (parser._mustBeInlined) this._mustBeInlined = true
+    if (parser._mustBeInlined) {
+      this._mustBeInlined = true
+    }
 
     return ast
   }

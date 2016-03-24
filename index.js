@@ -167,12 +167,12 @@ module.exports = function (source) {
     this.context()
     ast.filename = path
 
-    if (this.peek().type === 'indent') {
-      ast.includeBlock().push(this.block())
-    } else if (!parser._mustBeInlined) {
-      ast = new nodes.Code('require(' + JSON.stringify(path) + ').call(this, locals)', true, false)
-      ast.line = this.line()
-    }
+    // if (this.peek().type === 'indent') {
+    //   ast.includeBlock().push(this.block())
+    // } else if (!parser._mustBeInlined) {
+    //   ast = new nodes.Code('require(' + JSON.stringify(path) + ').call(this, locals)', true, false)
+    //   ast.line = this.line()
+    // }
 
     if (parser._mustBeInlined) {
       this._mustBeInlined = true
@@ -184,7 +184,7 @@ module.exports = function (source) {
   run()
   function run () {
     try {
-      var tmplFunc = jade.compileClient(source, {
+      var tmplFunc = jade.compile(source, {
         parser: loadModule ? MyParser : undefined,
         filename: req,
         self: query.self,
@@ -202,7 +202,7 @@ module.exports = function (source) {
       }
       throw e
     }
-    var runtime = 'var jade = require(' + JSON.stringify(require.resolve('jade/lib/runtime')) + ');\n\n'
-    loaderContext.callback(null, runtime + 'module.exports = ' + tmplFunc.toString())
+
+    loaderContext.callback(null, JSON.stringify(tmplFunc(query.locals)))
   }
 }

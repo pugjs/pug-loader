@@ -1,0 +1,1 @@
+console.log('Start writing ES6, man!')

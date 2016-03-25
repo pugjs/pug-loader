@@ -16,12 +16,12 @@ describe('include', function () {
       if (err) throw err
 
       result.should.have.type('string')
-      result.should.match(/"test"/)
-      result.should.match(/"a"/)
-      result.should.not.match(/"b"/)
-      result.should.match(/"c"/)
-      result.should.match(/jade_mixins\["test"\]/)
-      result.should.match(/jade_mixins\["teest"\]/)
+      result.should.match(/test/)
+      result.should.match(/a/)
+      result.should.match(/b/)
+      result.should.match(/c/)
+      result.should.match(/test/)
+      result.should.match(/teest/)
 
       done()
     })

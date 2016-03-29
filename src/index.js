@@ -7,21 +7,21 @@ let req = loaderUtils.getRemainingRequest(this).replace(/^!/, '')
 let query = loaderUtils.parseQuery(this.query)
 let missingFileMode = false
 let resolve, loadModule, loaderContext, callback
-let fileContents = {}
-let filePaths = {}
 
 export default class JadeLoader {
   constructor (source) {
     this.cacheable && this.cacheable()
     loadModule = this.loadModule
     resolve = this.resolve
+    this.fileContents = {}
+    this.filePaths = {}
     loaderContext = this
   }
 
   getFileContent (context, request) {
     request = loaderUtils.urlToRequest(request, query.root)
     let baseRequest = request
-    let filePath = filePaths[`${context} ${request}`]
+    let filePath = loaderContext.filePaths[`${context} ${request}`]
     if (filePath) {
       return filePath
     }
@@ -48,8 +48,8 @@ export default class JadeLoader {
             return callback(err)
           }
 
-          filePaths[context + ' ' + baseRequest] = request
-          fileContents[request] = JSON.parse(source)
+          loaderContext.filePaths[`${context} ${baseRequest}`] = request
+          loaderContext.fileContents[request] = JSON.parse(source)
 
           if (!isSync) {
             self.run()
@@ -64,7 +64,7 @@ export default class JadeLoader {
       missingFileMode = true
       throw new Error('continue')
     } else {
-      return filePaths[`${context} ${baseRequest}`]
+      return loaderContext.filePaths[`${context} ${baseRequest}`]
     }
   }
 
@@ -79,7 +79,8 @@ export default class JadeLoader {
         pretty: query.pretty,
         locals: query.locals,
         doctype: query.doctype || 'html',
-        compileDebug: loaderContext.debug || false
+        compileDebug: loaderContext.debug || false,
+        loader: loaderContext
       })
     } catch (e) {
       if (missingFileMode) {

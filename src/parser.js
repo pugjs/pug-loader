@@ -2,11 +2,15 @@ import JadeParser from 'jade/lib/parser'
 import filters from 'jade/lib/filters'
 import nodes from 'jade/lib/nodes'
 import utils from 'jade/lib/utils'
+import path from 'path'
+
+let loaderContext, callback
 
 export default class Parser extends JadeParser {
-  constructor (str, filename, options) {
-    super(str, filename, options)
+  constructor (opts) {
+    super(opts.str, opts.filename, opts.options)
     this._mustBeInlined = false
+    loaderContext = opts.loader
   }
 
   parseMixin () {
@@ -29,14 +33,14 @@ export default class Parser extends JadeParser {
       callback = loaderContext.async()
     }
     if (!callback) {
-      return jade.Parser.prototype.parseExtends.call(this)
+      return JadeParser.prototype.parseExtends.call(this)
     }
 
     var request = this.expect('extends').val.trim()
-    var context = dirname(this.filename.split('!').pop())
+    var context = path.dirname(this.filename.split('!').pop())
 
-    var path = getFileContent(context, request)
-    var str = fileContents[path]
+    var path = loaderContext.getFileContent(context, request)
+    var str = loaderContext.fileContents[path]
     var parser = new this.constructor(str, path, this.options)
 
     parser.blocks = this.blocks
@@ -51,23 +55,23 @@ export default class Parser extends JadeParser {
       callback = loaderContext.async()
     }
     if (!callback) {
-      return jade.Parser.prototype.parseInclude.call(this)
+      return JadeParser.prototype.parseInclude.call(this)
     }
 
-    var tok = this.expect('include')
+    let tok = this.expect('include')
 
-    var request = tok.val.trim()
-    var context = dirname(this.filename.split('!').pop())
-    var path = getFileContent(context, request)
-    var str = fileContents[path]
+    let request = tok.val.trim()
+    let context = path.dirname(this.filename.split('!').pop())
+    let path = loaderContext.getFileContent(context, request)
+    let str = loaderContext.fileContents[path]
 
     // has-filter
     if (tok.filter) {
-      var hasFilterStr = str.replace(/\r/g, '')
-      var options = {filename: path}
-      var constantinople
+      let hasFilterStr = str.replace(/\r/g, '')
+      let options = {filename: path}
+      let constantinople
       if (tok.attrs) {
-        tok.attrs.attrs.forEach(function (attribute) {
+        tok.attrs.attrs.forEach((attribute) => {
           options[attribute.name] = constantinople.toConstant(attribute.val)
         })
       }
@@ -77,11 +81,11 @@ export default class Parser extends JadeParser {
 
     // non-jade
     if (path.substr(-5) !== '.jade') {
-      var nonJadeStr = str.replace(/\r/g, '')
+      let nonJadeStr = str.replace(/\r/g, '')
       return new nodes.Literal(nonJadeStr)
     }
 
-    var parser = new this.constructor(str, path, this.options)
+    let parser = new this.constructor(str, path, this.options)
     parser.dependencies = this.dependencies
 
     parser.blocks = utils.merge({}, this.blocks)

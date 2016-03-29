@@ -5,7 +5,7 @@ var fs = require('fs')
 var path = require('path')
 
 var runLoader = require('./fakeModuleSystem')
-var jadeLoader = require('../')
+var jadeLoader = require('../lib').default
 
 var fixtures = path.join(__dirname, 'fixtures')
 

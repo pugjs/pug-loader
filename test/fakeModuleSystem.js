@@ -29,6 +29,7 @@ module.exports = function runLoader (loader, directory, filename, arg, callback)
       return callback(null, content)
     }
   }
+
   var res = loader.call(loaderContext, arg)
   if (!async) callback(null, res)
 }

@@ -8,10 +8,10 @@ var loaderContext, callback
 var dirname = path.dirname
 
 export default class Parser extends JadeParser {
-  constructor (opts) {
-    super(opts.str, opts.filename, opts.options)
+  constructor (str, filename, options) {
+    super(str, filename, options)
     this._mustBeInlined = false
-    loaderContext = opts.loader
+    loaderContext = options.loader
   }
 
   parseMixin () {
@@ -62,7 +62,7 @@ export default class Parser extends JadeParser {
     var tok = this.expect('include')
 
     let request = tok.val.trim()
-    let context = path.dirname(this.filename.split('!').pop())
+    let context = dirname(this.filename.split('!').pop())
     let path = loaderContext.getFileContent(context, request)
     let str = loaderContext.fileContents[path]
 

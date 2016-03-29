@@ -3,25 +3,22 @@ import loaderUtils from 'loader-utils'
 import jade from 'jade'
 import MyParser from './parser'
 
-var req, query, resolve, loadModule, loaderContext, callback
-var missingFileMode = false
+export default function (source) {
+  if (this.cacheable) this.cacheable()
+  var callback = this.async()
+  var req = loaderUtils.getRemainingRequest(this).replace(/^!/, '')
+  var query = loaderUtils.parseQuery(this.query)
+  var stringifyLoader = path.join(__dirname, 'stringify.loader.js')
+  var loaderContext = this
+  var loadModule = this.loadModule
+  var resolve = this.resolve
+  var missingFileMode = false
 
-export default class JadeLoader {
-  constructor (source) {
-    this.cacheable && this.cacheable()
-    req = loaderUtils.getRemainingRequest(this).replace(/^!/, '')
-    query = loaderUtils.parseQuery(this.query)
-    loadModule = this.loadModule
-    resolve = this.resolve
-    this.fileContents = {}
-    this.filePaths = {}
-    loaderContext = this
-  }
-
-  getFileContent (context, request) {
+  this.fileContents = {}
+  this.filePaths = {}
+  this.getFileContent = function (context, request) {
     request = loaderUtils.urlToRequest(request, query.root)
     var baseRequest = request
-    var self = this
     var isSync = true
     let filePath = loaderContext.filePaths[`${context} ${request}`]
     if (filePath) {
@@ -43,7 +40,7 @@ export default class JadeLoader {
       request = _request
       next()
       function next () {
-        loadModule(`-!${path.join(__dirname, 'stringify.loader.js')}!${request}`, function (err, source) {
+        loadModule(`-!${stringifyLoader}!${request}`, function (err, source) {
           if (err) {
             return callback(err)
           }
@@ -52,7 +49,7 @@ export default class JadeLoader {
           loaderContext.fileContents[request] = JSON.parse(source)
 
           if (!isSync) {
-            self.run()
+            run()
           } else {
             isSync = false
           }
@@ -68,9 +65,10 @@ export default class JadeLoader {
     }
   }
 
-  run () {
+  run()
+  function run () {
     try {
-      var tmplFunc = jade.compile(this.source, {
+      var tmplFunc = jade.compile(source, {
         parser: loadModule ? MyParser : undefined,
         filename: req,
         self: query.self,
@@ -92,5 +90,4 @@ export default class JadeLoader {
 
     loaderContext.callback(null, JSON.stringify(tmplFunc(query.locals)))
   }
-
 }

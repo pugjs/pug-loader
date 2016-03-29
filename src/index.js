@@ -3,14 +3,14 @@ import loaderUtils from 'loader-utils'
 import jade from 'jade'
 import MyParser from './parser'
 
-let req = loaderUtils.getRemainingRequest(this).replace(/^!/, '')
-let query = loaderUtils.parseQuery(this.query)
-let missingFileMode = false
-let resolve, loadModule, loaderContext, callback
+var req, query, resolve, loadModule, loaderContext, callback
+var missingFileMode = false
 
 export default class JadeLoader {
   constructor (source) {
     this.cacheable && this.cacheable()
+    req = loaderUtils.getRemainingRequest(this).replace(/^!/, '')
+    query = loaderUtils.parseQuery(this.query)
     loadModule = this.loadModule
     resolve = this.resolve
     this.fileContents = {}
@@ -20,13 +20,13 @@ export default class JadeLoader {
 
   getFileContent (context, request) {
     request = loaderUtils.urlToRequest(request, query.root)
-    let baseRequest = request
+    var baseRequest = request
+    var self = this
+    var isSync = true
     let filePath = loaderContext.filePaths[`${context} ${request}`]
     if (filePath) {
       return filePath
     }
-    let isSync = true
-    let self = this
     resolve(context, `${request}.jade`, (err, _request) => {
       if (err) {
         resolve(context, request, (err2, _request) => {
@@ -69,9 +69,8 @@ export default class JadeLoader {
   }
 
   run () {
-    let tmplFunc
     try {
-      tmplFunc = jade.compile(this.source, {
+      var tmplFunc = jade.compile(this.source, {
         parser: loadModule ? MyParser : undefined,
         filename: req,
         self: query.self,

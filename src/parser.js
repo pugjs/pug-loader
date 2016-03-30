@@ -16,17 +16,17 @@ export default class Parser extends JadeParser {
 
   parseMixin () {
     this._mustBeInlined = true
-    return JadeParser.prototype.parseMixin.call(this)
+    return super.parseMixin.call(this)
   }
 
   parseBlock () {
     this._mustBeInlined = true
-    return JadeParser.prototype.parseBlock.call(this)
+    return super.parseBlock.call(this)
   }
 
   parseCall () {
     this._mustBeInlined = true
-    return JadeParser.prototype.parseCall.call(this)
+    return super.parseCall.call(this)
   }
 
   parseExtends () {
@@ -34,7 +34,7 @@ export default class Parser extends JadeParser {
       callback = loaderContext.async()
     }
     if (!callback) {
-      return JadeParser.prototype.parseExtends.call(this)
+      return super.parseExtends.call(this)
     }
 
     let request = this.expect('extends').val.trim()
@@ -56,7 +56,7 @@ export default class Parser extends JadeParser {
       callback = loaderContext.async()
     }
     if (!callback) {
-      return JadeParser.prototype.parseInclude.call(this)
+      return super.parseInclude.call(this)
     }
 
     var tok = this.expect('include')
@@ -69,7 +69,7 @@ export default class Parser extends JadeParser {
     // has-filter
     if (tok.filter) {
       let hasFilterStr = str.replace(/\r/g, '')
-      let options = {filename: path}
+      let options = { filename: path }
       let constantinople
       if (tok.attrs) {
         tok.attrs.attrs.forEach((attribute) => {

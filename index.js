@@ -20,7 +20,7 @@ module.exports = function(source) {
 	
 	if (query.filters) {
 		query.filters.forEach((filterObj) => {
-			jade.filters[filterObj.name] = filterObj.filter
+			jade.filters[filterObj.name] = eval(filterObj.filter);
 		});
 	}
 

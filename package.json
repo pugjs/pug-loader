@@ -1,16 +1,18 @@
 {
-  "name": "jade-loader",
+  "name": "pug-loader",
   "version": "0.8.0",
   "author": "Tobias Koppers @sokra",
-  "description": "jade loader module for webpack",
+  "description": "Pug loader module for Webpack",
   "dependencies": {
-    "loader-utils": "~0.2.5"
+    "loader-utils": "~0.2.5",
+    "resolve": "^1.1.7"
   },
   "peerDependencies": {
-    "jade": "^1.7.0"
+    "pug": ">=2.0.0-beta3 <3"
   },
   "devDependencies": {
     "mocha": "*",
+    "pug": "^2.0.0-beta4",
     "should": "*"
   },
   "scripts": {
@@ -18,12 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/webpack/jade-loader.git"
+    "url": "git://github.com/pug/pug-loader.git"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://www.opensource.org/licenses/mit-license.php"
-    }
-  ]
+  "license": "MIT"
 }

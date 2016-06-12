@@ -1,10 +1,10 @@
-# jade loader for webpack
+# Pug loader for Webpack
 
 ## Usage
 
 ``` javascript
-var template = require("jade!./file.jade");
-// => returns file.jade content as template function
+var template = require("pug!./file.pug");
+// => returns file.pug content as template function
 ```
 
 [Documentation: Using loaders](http://webpack.github.io/docs/using-loaders.html)
@@ -13,7 +13,7 @@ var template = require("jade!./file.jade");
 
 Try to use `require` for all your embedded resources, to process them with webpack.
 
-``` jade
+```pug
 div
   img(src=require("./my/image.png"))
 ```

@@ -4,14 +4,14 @@ var fs = require("fs");
 var path = require("path");
 
 var runLoader = require("./fakeModuleSystem");
-var jadeLoader = require("../");
+var pugLoader = require("../");
 
 var fixtures = path.join(__dirname, "fixtures");
 
 describe("include", function() {
 	it("should generate correct code", function(done) {
-		var template = path.join(fixtures, "include", "template.jade");
-		runLoader(jadeLoader, path.join(fixtures, "include"), template, fs.readFileSync(template, "utf-8"), function(err, result) {
+		var template = path.join(fixtures, "include", "template.pug");
+		runLoader(pugLoader, path.join(fixtures, "include"), template, fs.readFileSync(template, "utf-8"), function(err, result) {
 			if(err) throw err;
 			
 			result.should.have.type("string");
@@ -19,8 +19,8 @@ describe("include", function() {
 			result.should.match(/"a"/);
 			result.should.not.match(/"b"/);
 			result.should.match(/"c"/);
-			result.should.match(/jade_mixins\["test"\]/);
-			result.should.match(/jade_mixins\["teest"\]/);
+			result.should.match(/pug_mixins\["test"\]/);
+			result.should.match(/pug_mixins\["teest"\]/);
 			
 			done();
 		});

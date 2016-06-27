@@ -1,10 +1,12 @@
-# jade loader for webpack
+# pug loader for webpack
+
+### `npm i --save-dev pug-loader`
 
 ## Usage
 
 ``` javascript
-var template = require("jade!./file.jade");
-// => returns file.jade content as template function
+var template = require("pug!./file.pug");
+// => returns file.pug content as template function
 ```
 
 [Documentation: Using loaders](http://webpack.github.io/docs/using-loaders.html)

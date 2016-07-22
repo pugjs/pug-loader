@@ -119,7 +119,7 @@ module.exports = function(source) {
 				if (node.type === "Include" && !(node.block && node.block.nodes.length) && !node.file.ast._mustBeInlined) {
 					replace({
 						type: "Code",
-						val: "require(" + JSON.stringify(node.file.fullPath) + ").call(this, locals)",
+						val: "require(" + loaderUtils.stringifyRequest(loaderContext, node.file.fullPath) + ").call(this, locals)",
 						buffer: true,
 						mustEscape: false,
 						isInline: false,
@@ -155,7 +155,7 @@ module.exports = function(source) {
 			}
 			throw e;
 		}
-		var runtime = "var pug = require(" + JSON.stringify(modulePaths.runtime) + ");\n\n";
+		var runtime = "var pug = require(" + loaderUtils.stringifyRequest(loaderContext, "!" + modulePaths.runtime) + ");\n\n";
 		loaderContext.callback(null, runtime + tmplFunc.toString() + ";\nmodule.exports = template;");
 	}
 }

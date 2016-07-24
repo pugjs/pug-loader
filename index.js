@@ -32,8 +32,11 @@ module.exports = function(source) {
 	function getFileContent(context, request) {
 		request = loaderUtils.urlToRequest(request, query.root)
 		var baseRequest = request;
-		var filePath = filePaths[context + " " + request];
+		var filePath;
+
+		filePath = filePaths[context + " " + request];
 		if(filePath) return filePath;
+
 		var isSync = true;
 		resolve(context, request, function(err, _request) {
 			if(err) {
@@ -57,19 +60,17 @@ module.exports = function(source) {
 
 					if(!isSync) {
 						run();
-					} else {
-						isSync = false;
 					}
 				});
 			}
 		});
-		if(isSync) {
-			isSync = false;
-			missingFileMode = true;
-			throw "continue";
-		} else {
-			return filePaths[context + " " + baseRequest];
-		}
+
+		filePath = filePaths[context + " " + baseRequest];
+		if(filePath) return filePath;
+
+		isSync = false;
+		missingFileMode = true;
+		throw "continue";
 	}
 
 	var plugin = loadModule ? {

@@ -1,8 +1,11 @@
 {
   "name": "pug-loader",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "author": "Tobias Koppers @sokra",
   "description": "Pug loader module for Webpack",
+  "maintainers": [
+    "Timothy Gu <timothygu99@gmail.com>"
+  ],
   "dependencies": {
     "loader-utils": "~0.2.5",
     "resolve": "^1.1.7"
@@ -20,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/pug/pug-loader.git"
+    "url": "git://github.com/pugjs/pug-loader.git"
   },
   "license": "MIT"
 }

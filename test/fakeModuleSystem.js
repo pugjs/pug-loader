@@ -10,7 +10,7 @@ module.exports = function runLoader(loader, directory, filename, arg, callback) 
 		},
 		loaders: ["itself"],
 		loaderIndex: 0,
-		query: "",
+		query: "?root=" + encodeURIComponent(directory),
 		resource: filename,
 		callback: function() {
 			async = true;

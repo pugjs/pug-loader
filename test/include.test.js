@@ -11,7 +11,7 @@ var fixtures = path.join(__dirname, "fixtures");
 describe("include", function() {
 	it("should generate correct code", function(done) {
 		var template = path.join(fixtures, "include", "template.pug");
-		runLoader(pugLoader, path.join(fixtures, "include"), template, fs.readFileSync(template, "utf-8"), function(err, result) {
+		runLoader(pugLoader, path.join(fixtures, "include", "included"), template, fs.readFileSync(template, "utf-8"), function(err, result) {
 			if(err) throw err;
 			
 			result.should.have.type("string");

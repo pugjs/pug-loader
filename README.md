@@ -1,4 +1,6 @@
-# Pug loader for Webpack
+# pug-loader
+
+Pug loader for Webpack.
 
 ## Usage
 

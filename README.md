@@ -8,6 +8,9 @@ Pug loader for Webpack.
 var template = require("pug!./file.pug");
 // => returns file.pug content as template function
 
+// or, if you've bound .pug to pug-loader
+var template = require("./file.pug");
+
 var locals = { /* ... */ };
 
 var html = template(locals);
@@ -19,6 +22,10 @@ For more information on how to use Webpack loaders, check the [official document
 ### Legacy `.jade` files
 
 pug-loader fully supports `.jade` files. Just use pug-loader with `.jade` files as you would with a `.pug` file.
+
+### Includes
+
+If you are using [includes], you must make sure that `.pug` (and if needed for legacy files, `.jade`) is bound to pug-loader. Check the Webpack documentation on how to do that for [CLI][module-bind-cli] and for [configuration files][module-bind-config].
 
 ### Options
 
@@ -52,5 +59,7 @@ Remember, you need to configure loaders for these file types too. You might be i
 [file-loader]: https://github.com/webpack/file-loader
 [includes]: http://jade-lang.com/reference/includes/
 [mit]: https://www.opensource.org/licenses/mit-license.php
+[module-bind-cli]: https://webpack.github.io/docs/using-loaders.html#configuration
+[module-bind-config]: https://webpack.github.io/docs/using-loaders.html#cli
 [query]: https://webpack.github.io/docs/using-loaders.html#query-parameters
 [using-loaders]: https://webpack.github.io/docs/using-loaders.html

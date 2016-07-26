@@ -119,7 +119,7 @@ module.exports = function(source) {
 				if (node.type === "Include" && !(node.block && node.block.nodes.length) && !node.file.ast._mustBeInlined) {
 					replace({
 						type: "Code",
-						val: "require(" + loaderUtils.stringifyRequest(loaderContext, module.filename + "!" + node.file.fullPath) + ").call(this, locals)",
+						val: "require(" + loaderUtils.stringifyRequest(loaderContext, node.file.fullPath) + ").call(this, locals)",
 						buffer: true,
 						mustEscape: false,
 						isInline: false,

@@ -59,7 +59,7 @@ Remember, you need to configure loaders for these file types too. You might be i
 [file-loader]: https://github.com/webpack/file-loader
 [includes]: http://jade-lang.com/reference/includes/
 [mit]: https://www.opensource.org/licenses/mit-license.php
-[module-bind-cli]: https://webpack.github.io/docs/using-loaders.html#configuration
-[module-bind-config]: https://webpack.github.io/docs/using-loaders.html#cli
+[module-bind-cli]: https://webpack.github.io/docs/using-loaders.html#cli
+[module-bind-config]: https://webpack.github.io/docs/using-loaders.html#configuration
 [query]: https://webpack.github.io/docs/using-loaders.html#query-parameters
 [using-loaders]: https://webpack.github.io/docs/using-loaders.html

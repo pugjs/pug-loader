@@ -8,6 +8,7 @@
   ],
   "dependencies": {
     "loader-utils": "~0.2.5",
+    "pug-walk": "0.0.3",
     "resolve": "^1.1.7"
   },
   "peerDependencies": {

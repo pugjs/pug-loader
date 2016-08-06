@@ -79,6 +79,7 @@ module.exports = function(source) {
 				if ([
 					"Mixin",
 					"MixinBlock",
+					"Block",
 					"NamedBlock"
 				].indexOf(node.type) !== -1) {
 					ast._mustBeInlined = true;

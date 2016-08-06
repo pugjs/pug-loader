@@ -1,5 +1,10 @@
 # Change log
 
+## 2.2.1 / 2016-08-06
+
+- Minor README correction
+- Remove unused `web_modules/fs.js`
+
 ## 2.2.0 / 2016-07-26
 
 - Revert to v2.0.0

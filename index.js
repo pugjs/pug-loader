@@ -19,6 +19,12 @@ module.exports = function(source) {
 	var req = loaderUtils.getRemainingRequest(this).replace(/^!/, "");
 
 	var query = loaderUtils.parseQuery(this.query);
+	
+	if (query.filters) {
+		query.filters.forEach((filterObj) => {
+			jade.filters[filterObj.name] = eval(filterObj.filter);
+		});
+	}
 
 	var loadModule = this.loadModule;
 	var resolve = this.resolve;

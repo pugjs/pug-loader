@@ -5,12 +5,15 @@ var nodeResolve = require("resolve").sync;
 
 module.exports = function(source) {
 	this.cacheable && this.cacheable();
+	
+	var basePugDir = path.resolve(require.resolve('pug/package.json'), '..');
+	var pugFilters = path.resolve(nodeResolve("pug-filters/package.json", {basedir: basePugDir}), '..');
 
 	var modulePaths = {};
 	modulePaths.pug = require.resolve("pug");
-	modulePaths.load = nodeResolve("pug-load", {basedir: dirname(modulePaths.pug)});
-	modulePaths.runtime = nodeResolve("pug-runtime", {basedir: dirname(modulePaths.pug)});
-	modulePaths.walk = nodeResolve("pug-walk", {basedir: dirname(modulePaths.pug)});
+	modulePaths.load = nodeResolve("pug-load", {basedir: pugFilters});
+	modulePaths.runtime = nodeResolve("pug-runtime", {basedir: pugFilters});
+	modulePaths.walk = nodeResolve('pug-walk', {basedir: pugFilters});
 
 	var pug = require(modulePaths.pug);
 	var load = require(modulePaths.load);

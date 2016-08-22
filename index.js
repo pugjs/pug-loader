@@ -10,7 +10,7 @@ module.exports = function(source) {
 	modulePaths.pug = require.resolve("pug");
 	modulePaths.load = nodeResolve("pug-load", {basedir: dirname(modulePaths.pug)});
 	modulePaths.runtime = nodeResolve("pug-runtime", {basedir: dirname(modulePaths.pug)});
-	modulePaths.walk = nodeResolve("pug-walk", {basedir: dirname(modulePaths.pug)});
+	modulePaths.walk = require.resolve("pug-walk");
 
 	var pug = require(modulePaths.pug);
 	var load = require(modulePaths.load);

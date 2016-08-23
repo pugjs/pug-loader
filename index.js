@@ -17,7 +17,7 @@ module.exports = function(source) {
 
 	var req = loaderUtils.getRemainingRequest(this).replace(/^!/, "");
 
-	var query = loaderUtils.getLoaderConfig(this, 'pug');
+	var query = loaderUtils.getLoaderConfig(this, "pugLoader");
 
 	var loadModule = this.loadModule;
 	var resolve = this.resolve;

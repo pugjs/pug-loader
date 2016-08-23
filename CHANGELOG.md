@@ -1,5 +1,10 @@
 # Change log
 
+## 2.3.0 / 2016-08-22
+
+- Use explicit pug-walk dependency; fixes installation on npm v2
+- Allow setting Pug options from webpack.config.js's `pugLoader` property
+
 ## 2.2.1 / 2016-08-06
 
 - Minor README correction

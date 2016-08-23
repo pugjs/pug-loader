@@ -11,6 +11,7 @@ module.exports = function runLoader(loader, directory, filename, arg, callback) 
 		loaders: ["itself"],
 		loaderIndex: 0,
 		query: "?root=" + encodeURIComponent(directory),
+		options: {},
 		resource: filename,
 		callback: function() {
 			async = true;

@@ -154,7 +154,7 @@ module.exports = function(source) {
 			}
 			throw e;
 		}
-		var runtime = "var pug = require(" + loaderUtils.stringifyRequest(loaderContext, "!" + modulePaths.runtime) + ");\n\n";
+		var runtime = "var pug = require(" + loaderUtils.stringifyRequest(loaderContext, modulePaths.runtime) + ");\n\n";
 		loaderContext.callback(null, runtime + tmplFunc.toString() + ";\nmodule.exports = template;");
 	}
 }

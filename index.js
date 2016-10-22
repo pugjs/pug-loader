@@ -1,19 +1,11 @@
 var path = require("path");
-var dirname = path.dirname;
 var loaderUtils = require("loader-utils");
-var nodeResolve = require("resolve").sync;
+var pug = require("pug");
+var load = require("pug-load");
 var walk = require('pug-walk');
 
 module.exports = function(source) {
 	this.cacheable && this.cacheable();
-
-	var modulePaths = {};
-	modulePaths.pug = require.resolve("pug");
-	modulePaths.load = nodeResolve("pug-load", {basedir: dirname(modulePaths.pug)});
-	modulePaths.runtime = nodeResolve("pug-runtime", {basedir: dirname(modulePaths.pug)});
-
-	var pug = require(modulePaths.pug);
-	var load = require(modulePaths.load);
 
 	var req = loaderUtils.getRemainingRequest(this).replace(/^!/, "");
 
@@ -93,7 +85,7 @@ module.exports = function(source) {
 				return load.resolve(request, source);
 			}
 
-			var context = dirname(source.split("!").pop());
+			var context = path.dirname(source.split("!").pop());
 			return getFileContent(context, request);
 		},
 		read: function (path) {
@@ -155,7 +147,7 @@ module.exports = function(source) {
 			loaderContext.callback(e);
 			return;
 		}
-		var runtime = "var pug = require(" + loaderUtils.stringifyRequest(loaderContext, "!" + modulePaths.runtime) + ");\n\n";
+		var runtime = "var pug = require(" + loaderUtils.stringifyRequest(loaderContext, "pug-runtime") + ");\n\n";
 		loaderContext.callback(null, runtime + tmplFunc.toString() + ";\nmodule.exports = template;");
 	}
 }

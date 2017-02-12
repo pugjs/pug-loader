@@ -152,7 +152,8 @@ module.exports = function(source) {
 				missingFileMode = false;
 				return;
 			}
-			throw e;
+			loaderContext.callback(e);
+			return;
 		}
 		var runtime = "var pug = require(" + loaderUtils.stringifyRequest(loaderContext, "!" + modulePaths.runtime) + ");\n\n";
 		loaderContext.callback(null, runtime + tmplFunc.toString() + ";\nmodule.exports = template;");

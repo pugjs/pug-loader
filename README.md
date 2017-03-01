@@ -5,7 +5,7 @@ Pug loader for Webpack.
 ## Usage
 
 ``` javascript
-var template = require("pug!./file.pug");
+var template = require("pug-loader!./file.pug");
 // => returns file.pug content as template function
 
 // or, if you've bound .pug to pug-loader

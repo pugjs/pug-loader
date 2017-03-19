@@ -2,7 +2,7 @@
   "name": "pug-loader",
   "version": "2.3.0",
   "author": "Tobias Koppers @sokra",
-  "description": "Pug loader module for Webpack",
+  "description": "Pug loader module for webpack",
   "maintainers": [
     "Timothy Gu <timothygu99@gmail.com>"
   ],

@@ -57,7 +57,7 @@ Remember, you need to configure loaders for these file types too. You might be i
 [MIT][mit]
 
 [file-loader]: https://github.com/webpack/file-loader
-[includes]: http://jade-lang.com/reference/includes/
+[includes]: https://pugjs.org/language/includes.html
 [mit]: https://www.opensource.org/licenses/mit-license.php
 [module-bind-cli]: https://webpack.github.io/docs/using-loaders.html#cli
 [module-bind-config]: https://webpack.github.io/docs/using-loaders.html#configuration

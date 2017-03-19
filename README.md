@@ -29,7 +29,7 @@ If you are using [includes], you must make sure that `.pug` (and if needed for l
 
 ### Options
 
-The following options are available to be set as part of the [loader query][query]. They are all mapped directly to Pug options, unless pointed out otherwise.
+The following [options] are available to be set for the loader. They are all mapped directly to Pug options, unless pointed out otherwise.
 
 - `doctype`
   - Unlike Pug, it defaults to `"html"` if not set
@@ -59,7 +59,7 @@ Remember, you need to configure loaders for these file types too. You might be i
 [file-loader]: https://github.com/webpack/file-loader
 [includes]: https://pugjs.org/language/includes.html
 [mit]: https://www.opensource.org/licenses/mit-license.php
-[module-bind-cli]: https://webpack.github.io/docs/using-loaders.html#cli
-[module-bind-config]: https://webpack.github.io/docs/using-loaders.html#configuration
-[query]: https://webpack.github.io/docs/using-loaders.html#query-parameters
-[using-loaders]: https://webpack.github.io/docs/using-loaders.html
+[module-bind-cli]: https://webpack.js.org/concepts/loaders/#via-cli
+[module-bind-config]: https://webpack.js.org/concepts/loaders/#configuration
+[options]: https://webpack.js.org/configuration/module/#useentry
+[using-loaders]: https://webpack.js.org/loaders

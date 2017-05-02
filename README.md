@@ -2,6 +2,40 @@
 
 Pug loader for webpack.
 
+## Installation
+
+npm install --save json-loader
+
+## Sample webpack.config.js
+
+``` json
+var path = require('path');
+var webpack = require('webpack');
+
+module.exports = {
+    entry: {
+        "server": [
+            './server'
+        ]
+    },
+    output: {
+        path: `${__dirname}/__build__`,
+        publicPath: '/__build__/',
+        filename: '[name].js',
+    },
+    module: {
+        loaders: [
+            {
+                test: /\.jade$/,
+                loaders: ['pug'],
+                exclude: /node_modules/,
+                include: path.join(__dirname)
+            }
+        ]
+    }
+};
+```
+
 ## Usage
 
 ``` javascript

@@ -7,7 +7,7 @@
     "Timothy Gu <timothygu99@gmail.com>"
   ],
   "dependencies": {
-    "loader-utils": "~0.2.5",
+    "loader-utils": "^1.1.0",
     "pug-walk": "^1.0.0",
     "resolve": "^1.1.7"
   },

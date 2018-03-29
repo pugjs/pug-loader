@@ -19,6 +19,13 @@ var html = template(locals);
 
 For more information on how to use webpack loaders, check the [official documentation][using-loaders].
 
+In order to obtain the rendered HTML at compile time, combine this loader with [`apply-loader`](https://github.com/mogelbrod/apply-loader):
+
+```
+var html = require("apply-loader!pug-loader!./file.pug");
+// => the HTML is rendered at compile time
+```
+
 ### Legacy `.jade` files
 
 pug-loader fully supports `.jade` files. Just use pug-loader with `.jade` files as you would with a `.pug` file.

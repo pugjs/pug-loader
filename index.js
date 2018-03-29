@@ -142,6 +142,7 @@ module.exports = function(source) {
 				globals: ["require"].concat(query.globals || []),
 				name: "template",
 				inlineRuntimeFunctions: false,
+				filters: query.filters,
 				plugins: [
 					plugin
 				].concat(query.plugins || [])

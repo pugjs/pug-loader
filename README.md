@@ -45,6 +45,7 @@ The following [options] are available to be set for the loader. They are all map
 - `plugins`
   - Note that you cannot specify any Pug plugins implementing `read` or `resolve` hooks, as those are reserved for the loader
 - `pretty`
+- `filters`
 - `root`
   - webpack uses its own file resolving mechanism, so while it is functionally equivalent to the Pug option with the same name, it is implemented differently
 

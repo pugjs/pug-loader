@@ -1,6 +1,6 @@
 {
   "name": "pug-loader",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "author": "Tobias Koppers @sokra",
   "description": "Pug loader module for webpack",
   "maintainers": [
@@ -12,7 +12,7 @@
     "resolve": "^1.1.7"
   },
   "peerDependencies": {
-    "pug": "^2.0.0"
+    "pug": "^2.0.0 || ^3.0.0"
   },
   "devDependencies": {
     "mocha": "*",

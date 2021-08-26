@@ -1,5 +1,14 @@
 # Change log
 
+## 2.5.0 / Aktura Technology 2021-08-26
+
+- Updated NPM dependencies to allow for > PUG 3.0.0
+
+## 2.4.0
+
+- Not documented
+
+
 ## 2.3.0 / 2016-08-22
 
 - Use explicit pug-walk dependency; fixes installation on npm v2

@@ -1,22 +1,22 @@
 {
   "name": "pug-loader",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "author": "Tobias Koppers @sokra",
   "description": "Pug loader module for webpack",
   "maintainers": [
     "Timothy Gu <timothygu99@gmail.com>"
   ],
   "dependencies": {
-    "loader-utils": "^1.1.0",
+    "loader-utils": "^2.0.0",
     "pug-walk": "^1.0.0",
-    "resolve": "^1.1.7"
+    "resolve": "^1.20.0"
   },
   "peerDependencies": {
-    "pug": "^2.0.0"
+    "pug": "^3.0.0"
   },
   "devDependencies": {
     "mocha": "*",
-    "pug": "^2.0.0",
+    "pug": "^3.0.0",
     "should": "*"
   },
   "scripts": {
